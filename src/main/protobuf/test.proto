@@ -1,0 +1,9 @@
+syntax = "proto3";
+package AiTankArenaServer;
+option java_multiple_files = true;
+option java_package = "cn.teamthevoid.AiTankArenaServer.message";
+//option java_outer_classname = "Grpc";
+message People{
+    string name = 1;
+    int32 id = 2;
+}
