@@ -1,15 +1,9 @@
 
 package cn.teamthevoid.AiTankArenaServer;
 
-import cn.teamthevoid.AiTankArenaServer.message.People;
-import io.netty.buffer.ByteBuf;
-
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
+import cn.teamthevoid.AiTankArenaServer.message.Operation;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.internal.ChannelUtils;
-import io.netty.util.CharsetUtil;
 
 /**
  * Handles a server-side channel.
@@ -17,12 +11,12 @@ import io.netty.util.CharsetUtil;
 public class ServerInfoHandler extends ChannelInboundHandlerAdapter { // (1)
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        People buf =(People)msg;
+        Operation buf = (Operation) msg;
         System.out.println(buf.toString());
-        People.Builder builder =People.newBuilder();
-        builder.mergeFrom(buf);
-        builder.setName("Hello World");
-        ctx.writeAndFlush(builder.build());
+//        People.Builder builder =People.newBuilder();
+//        builder.mergeFrom(buf);
+//        builder.setName("Hello World");
+        ctx.writeAndFlush(buf);
     }
 
     @Override

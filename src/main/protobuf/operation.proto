@@ -1,0 +1,19 @@
+syntax = "proto3";
+package AiTankArenaServer;
+option java_multiple_files = true;
+option java_package = "cn.teamthevoid.AiTankArenaServer.message";
+//option java_outer_classname = "Grpc";
+enum OperationType {
+    GET_STATUS = 0; //获取状态
+    JOIN = 1; //加入战局
+    AI_ACTION = 2; //提交AI行动
+    FRANCE = 3; //认输
+    HALT = 4; //本回合挂机
+    INIT = 5; //开局时选择装备
+    REJOIN = 6; //重连
+    SERVER_INFO = 7; //获取服务器信息
+}
+message Operation {
+    OperationType type = 1;
+    string message = 2;
+}
