@@ -16,8 +16,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='operation.proto',
   package='AiTankArenaServer',
   syntax='proto3',
-  serialized_options=b'\n(cn.teamthevoid.AiTankArenaServer.messageP\001',
-  serialized_pb=b'\n\x0foperation.proto\x12\x11\x41iTankArenaServer\"L\n\tOperation\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .AiTankArenaServer.OperationType\x12\x0f\n\x07message\x18\x02 \x01(\t*u\n\rOperationType\x12\x0e\n\nGET_STATUS\x10\x00\x12\x08\n\x04JOIN\x10\x01\x12\r\n\tAI_ACTION\x10\x02\x12\n\n\x06\x46RANCE\x10\x03\x12\x08\n\x04HALT\x10\x04\x12\x08\n\x04INIT\x10\x05\x12\n\n\x06REJOIN\x10\x06\x12\x0f\n\x0bSERVER_INFO\x10\x07\x42,\n(cn.teamthevoid.AiTankArenaServer.messageP\x01\x62\x06proto3'
+  serialized_options=b'\n2cn.teamthevoid.AiTankArenaServer.message.operationP\001',
+  serialized_pb=b'\n\x0foperation.proto\x12\x11\x41iTankArenaServer\"L\n\tOperation\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .AiTankArenaServer.OperationType\x12\x0f\n\x07message\x18\x02 \x01(\t*u\n\rOperationType\x12\x0e\n\nGET_STATUS\x10\x00\x12\x08\n\x04JOIN\x10\x01\x12\r\n\tAI_ACTION\x10\x02\x12\n\n\x06\x46RANCE\x10\x03\x12\x08\n\x04HALT\x10\x04\x12\x08\n\x04INIT\x10\x05\x12\n\n\x06REJOIN\x10\x06\x12\x0f\n\x0bSERVER_INFO\x10\x07\x42\x36\n2cn.teamthevoid.AiTankArenaServer.message.operationP\x01\x62\x06proto3'
 )
 
 _OPERATIONTYPE = _descriptor.EnumDescriptor(

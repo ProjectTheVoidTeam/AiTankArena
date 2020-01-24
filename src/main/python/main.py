@@ -1,10 +1,11 @@
-import operation_pb2 as proto
+import operation_pb2 as operation_pb
+import response_pb2 as response_pb
 from protobuf_connection import ProtobufConnection
 
-opr = proto.Operation()
-opr.type = proto.AI_ACTION
+opr = operation_pb.Operation()
+opr.type = operation_pb.JOIN
 opr.message = "Hello World"
 
 conn = ProtobufConnection(('127.0.0.1', 8080))
 conn.send(opr)
-print(conn.recv(proto.Operation))
+print(conn.recv(response_pb.Response))

@@ -1,7 +1,7 @@
 syntax = "proto3";
 package AiTankArenaServer;
 option java_multiple_files = true;
-option java_package = "cn.teamthevoid.AiTankArenaServer.message";
+option java_package = "cn.teamthevoid.AiTankArenaServer.message.operation";
 //option java_outer_classname = "Grpc";
 enum OperationType {
     GET_STATUS = 0; //获取状态

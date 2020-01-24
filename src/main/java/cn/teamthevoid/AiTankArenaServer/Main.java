@@ -1,6 +1,8 @@
 package cn.teamthevoid.AiTankArenaServer;
 
-import cn.teamthevoid.AiTankArenaServer.message.Operation;
+import cn.teamthevoid.AiTankArenaServer.handler.JoinGameHandler;
+import cn.teamthevoid.AiTankArenaServer.handler.ServerInfoHandler;
+import cn.teamthevoid.AiTankArenaServer.message.operation.Operation;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -31,6 +33,7 @@ public class Main {
                             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
                             pipeline.addLast(new ProtobufEncoder());
                             pipeline.addLast(new ServerInfoHandler());
+                            pipeline.addLast(new JoinGameHandler());
 
 //                            pipeline.addLast(new TestOutHandler() );
 
