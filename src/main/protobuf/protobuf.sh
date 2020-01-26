@@ -1,1 +1,1 @@
-protoc -I=./ --java_out=../java/ --python_out=../python/ ./*.proto
+protoc -I=./ --java_out=../java/ --python_out=../python/ --js_out=../javascript/ ./*.proto

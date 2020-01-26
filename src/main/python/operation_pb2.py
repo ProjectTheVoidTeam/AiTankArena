@@ -119,9 +119,9 @@ DESCRIPTOR.enum_types_by_name['OperationType'] = _OPERATIONTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Operation = _reflection.GeneratedProtocolMessageType('Operation', (_message.Message,), {
-  'DESCRIPTOR': _OPERATION,
-  '__module__': 'operation_pb2'
-  # @@protoc_insertion_point(class_scope:AiTankArenaServer.Operation)
+    'DESCRIPTOR': _OPERATION,
+    '__module__': 'operation_pb2'
+    # @@protoc_insertion_point(class_scope:AiTankArenaServer.Operation)
 })
 _sym_db.RegisterMessage(Operation)
 
