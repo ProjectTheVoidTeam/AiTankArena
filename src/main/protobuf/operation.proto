@@ -2,7 +2,7 @@ syntax = "proto3";
 package AiTankArenaServer;
 option java_multiple_files = true;
 option java_package = "cn.teamthevoid.AiTankArenaServer.message.operation";
-//option java_outer_classname = "Grpc";
+
 enum OperationType {
     GET_STATUS = 0; //获取状态
     JOIN = 1; //加入战局
@@ -13,7 +13,13 @@ enum OperationType {
     REJOIN = 6; //重连
     SERVER_INFO = 7; //获取服务器信息
 }
+message JoinGameInfo {
+    int32 sessionID = 1;
+    string myPlayerName = 2; //玩家姓名
+    int32 spawnPointID = 3; //期望的出生点序号 可能被服务器忽略或者重新安排
+}
 message Operation {
     OperationType type = 1;
     string message = 2;
+    JoinGameInfo joinGameInfo = 3;
 }

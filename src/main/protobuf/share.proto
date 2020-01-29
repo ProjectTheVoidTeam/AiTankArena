@@ -1,0 +1,22 @@
+syntax = "proto3";
+package AiTankArenaServer;
+option java_multiple_files = true;
+option java_package = "cn.teamthevoid.AiTankArenaServer.message.operation";
+
+//2维向量
+message Vector2D {
+    double x = 1;
+    double y = 2;
+}
+
+//3维向量
+message Vector3D {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+}
+
+message Rect {
+    double posTopLeft = 1;
+    double posBottomRight = 2;
+}
