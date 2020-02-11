@@ -9,5 +9,5 @@ opr.message = "Hello World"
 conn = ProtobufConnection(('127.0.0.1', 8080))
 conn.send(opr)
 print(conn.recv(response_pb.Response))
-
-print(conn.queue)
+conn.send(opr)
+print(conn.recv(response_pb.Response))
