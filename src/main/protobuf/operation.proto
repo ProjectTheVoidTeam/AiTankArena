@@ -2,24 +2,28 @@ syntax = "proto3";
 package AiTankArenaServer;
 option java_multiple_files = true;
 option java_package = "cn.teamthevoid.AiTankArenaServer.message.operation";
+import "game.proto";
 
 enum OperationType {
-    GET_STATUS = 0; //获取状态
+    GET_STATE = 0; //获取状态
     JOIN = 1; //加入战局
     AI_ACTION = 2; //提交AI行动
     FRANCE = 3; //认输
     HALT = 4; //本回合挂机
-    INIT = 5; //开局时选择装备
+    READY = 5; //准备
     REJOIN = 6; //重连
     SERVER_INFO = 7; //获取服务器信息
+    DEBUG = 8;
 }
-message JoinGameInfo {
-    int32 sessionID = 1;
-    string myPlayerName = 2; //玩家姓名
-    int32 spawnPointID = 3; //期望的出生点序号 可能被服务器忽略或者重新安排
+message JoinRoomInfo {
+    int32 roomID = 1; //战局ID
+    PlayerType type = 2; //玩家类型
+    string myPlayerName = 3; //玩家姓名
+    int32 spawnPointID = 4; //期望的出生点序号 可能被服务器忽略或者重新安排
+    repeated Weapon weapons = 5;
 }
 message Operation {
     OperationType type = 1;
     string message = 2;
-    JoinGameInfo joinGameInfo = 3;
+    JoinRoomInfo joinRoomInfo = 3;
 }

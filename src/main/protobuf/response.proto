@@ -4,14 +4,14 @@ option java_multiple_files = true;
 option java_package = "cn.teamthevoid.AiTankArenaServer.message.response";
 //option java_outer_classname = "Grpc";
 
-import "./game.proto";
+import "game.proto";
 enum Status {
     OK = 0;
     SERVER_ERROR = 1;
 }
 enum GameStage {
     WAITING = 0;
-    READY = 1;
+    ALL_READY = 1;
     IN_GAME = 2;
     END = 3;
 }
@@ -32,6 +32,6 @@ message ServerInfo {
 message Response {
     Status status = 1; //上一操作的返回值
     GameState gameState = 2; //游戏战局状态
-    Player player = 3; //玩家信息 开始和结束阶段有用 ,在战局信息更新时,可被省略
+    repeated Player players = 3; //玩家信息 开始和结束阶段有用 ,在战局信息更新时,可被省略
     ServerInfo serverInfo = 4; // 服务器信息,仅在客户端请求服务器信息时才需返回.在战局信息更新时,可被省略
 }

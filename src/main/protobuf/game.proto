@@ -2,15 +2,25 @@ syntax = "proto3";
 package AiTankArenaServer;
 option java_multiple_files = true;
 option java_package = "cn.teamthevoid.AiTankArenaServer.message.operation";
-import "./share.proto";
+import "share.proto";
+
+//玩家类型
+enum PlayerType {
+    WARRIOR = 0; //能够行动的坦克操作者 一般为AI
+    OBSERVER = 1; //不能行动的观察者
+}
 
 //游戏玩家
 message Player {
-    uint32 id = 1;
+    uint32 id = 1; //玩家的id
     string name = 2;
     bool isReady = 3;
     uint32 spawnPointId = 4;
+    PlayerType type = 6; //玩家类型
+    uint32 tankId = 7; //玩家所控制的坦克的id,将来可能控制多个坦克
     PlayerResults playerResults = 5;
+
+
 }
 
 //结算状态信息
@@ -28,7 +38,21 @@ message Tank {
     Vector2D pos = 2; //位置
     Vector2D direction = 3; //朝向的方向向量
     Rect hitbox = 4;
+}
 
+enum WeaponType {
+    CANNON = 0;
+}
+enum WeaponState {
+    IDLE = 0; //武器空闲中
+    ACTIVE = 1; //武器已被触发 例如 开炮中
+    COOL_DOWN = 2; //武器冷却中
+}
+
+message Weapon {
+    uint32 id = 1;
+    WeaponType type = 2;
+    WeaponState state = 3; //武器状态 用于判断是否射击或者显示动画
 }
 
 enum ProjectionType {
