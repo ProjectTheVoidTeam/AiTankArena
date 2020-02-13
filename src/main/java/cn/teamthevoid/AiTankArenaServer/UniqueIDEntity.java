@@ -1,5 +1,8 @@
 package cn.teamthevoid.AiTankArenaServer;
 
+import lombok.ToString;
+
+@ToString(includeFieldNames = false)
 public abstract class UniqueIDEntity implements Entity {
     private int id = -1;
 
@@ -13,4 +16,5 @@ public abstract class UniqueIDEntity implements Entity {
             this.id = UniqueIDGenerator.getNextUniqueID();
         return id;
     }
+
 }

@@ -1,10 +1,10 @@
 package cn.teamthevoid.AiTankArenaServer;
 
-import cn.teamthevoid.AiTankArenaServer.handler.JoinGameHandler;
-import cn.teamthevoid.AiTankArenaServer.handler.ServerInfoHandler;
+import cn.teamthevoid.AiTankArenaServer.handler.GameServerInitializer;
 import cn.teamthevoid.AiTankArenaServer.handler.websocket.ProtoBufToWebSocketBinaryDataEncoder;
 import cn.teamthevoid.AiTankArenaServer.handler.websocket.WebSocketBinaryDataDecoder;
 import cn.teamthevoid.AiTankArenaServer.message.operation.Operation;
+import cn.teamthevoid.AiTankArenaServer.room.ServerState;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -24,6 +24,7 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 public class Main {
+    ServerState serverState = new ServerState();
     public void run() throws Exception {
         EventLoopGroup socketBossGroup = new NioEventLoopGroup(); // (1)
         EventLoopGroup socketWorkerGroup = new NioEventLoopGroup();
@@ -41,8 +42,7 @@ public class Main {
                             pipeline.addLast(new ProtobufDecoder(Operation.getDefaultInstance()));
                             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
                             pipeline.addLast(new ProtobufEncoder());
-                            pipeline.addLast(new ServerInfoHandler());
-                            pipeline.addLast(new JoinGameHandler());
+                            pipeline.addLast(new GameServerInitializer(serverState));
 
 //                            pipeline.addLast(new TestOutHandler() );
 
@@ -66,8 +66,7 @@ public class Main {
                             pipeline.addLast(new WebSocketBinaryDataDecoder());
                             pipeline.addLast(new ProtobufDecoder(Operation.getDefaultInstance()));
                             pipeline.addLast(new ProtoBufToWebSocketBinaryDataEncoder());
-                            pipeline.addLast(new ServerInfoHandler());
-                            pipeline.addLast(new JoinGameHandler());
+                            pipeline.addLast(new GameServerInitializer(serverState));
 
 //                            pipeline.addLast(new TestOutHandler() );
 
