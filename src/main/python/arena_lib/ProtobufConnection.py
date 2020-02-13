@@ -2,7 +2,7 @@ import socket
 from queue import Queue
 from typing import Callable
 
-import google.protobuf.message as message
+import betterproto
 from google.protobuf.internal.decoder import _DecodeVarint32
 
 
@@ -39,13 +39,13 @@ class ProtobufConnection:
         self.sock.connect(address_port)
         self.queue = SockQueue(self.sock)
 
-    def send(self, proto_msg: message):
-        msg = proto_msg.SerializeToString()
+    def send(self, proto_msg: betterproto.Message):
+        msg = bytes(proto_msg)
         msg_len = self._encodeVarint(msg)
         self.sock.send(msg_len)
         self.sock.send(msg)
 
-    def recv(self, proto_constructor: Callable[[], type(message)]) -> message:
+    def recv(self, proto_constructor: Callable[[], type(betterproto.Message)]) -> betterproto.Message:
         lenBytes = b""
         pos = 0
 
@@ -58,6 +58,5 @@ class ProtobufConnection:
         buf = b''
         for i in range(recv_len):
             buf += self.queue.get()
-        proto_msg = proto_constructor()
-        proto_msg.ParseFromString(buf)
+        proto_msg = proto_constructor().parse(buf)
         return proto_msg
