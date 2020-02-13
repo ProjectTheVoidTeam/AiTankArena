@@ -6,8 +6,9 @@ option java_package = "cn.teamthevoid.AiTankArenaServer.message.response";
 
 import "game.proto";
 enum Status {
-    OK = 0;
-    SERVER_ERROR = 1;
+    SERVER_ERROR = 0;
+    OK = 1;
+    NOT_FOUND = 2;
 }
 enum GameStage {
     WAITING = 0;
@@ -34,4 +35,5 @@ message Response {
     GameState gameState = 2; //游戏战局状态
     repeated Player players = 3; //玩家信息 开始和结束阶段有用 ,在战局信息更新时,可被省略
     ServerInfo serverInfo = 4; // 服务器信息,仅在客户端请求服务器信息时才需返回.在战局信息更新时,可被省略
+    int32 yourPlayerId = 5; // 本条信息的接收方的PlayerId
 }

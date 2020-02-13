@@ -38,6 +38,7 @@ message Tank {
     Vector2D pos = 2; //位置
     Vector2D direction = 3; //朝向的方向向量
     Rect hitbox = 4;
+    repeated Weapon weapons = 5;
 }
 
 enum WeaponType {
@@ -64,4 +65,18 @@ message Projection {
     Vector2D pos = 2; //位置
     Vector2D direction = 3; //朝向的方向向量
     ProjectionType type = 4; //投射物类型
+}
+enum ActionType {
+    ENABLE = 0;
+    DISABLE = 1;
+}
+
+
+message Action {
+    int32 sourceId = 1; //作用者id 如果id等于自身ID 则为移动
+    ActionType type = 2; //启动还是停止
+    Vector2D direction = 3; //指示方向的单位向量 如:移动方向 出手角度
+    float power = 4; //力度 或者 速度 等
+    Vector2D targetPos = 5; //目标坐标
+    Vector2D targetId = 6; //目标ID
 }
